@@ -22,6 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
     ];
+    protected $guarded=[];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -41,4 +42,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    public function getCuentas(){
+        return $this->hasMany(Cuenta::class);
+    }
+    public function getInvitaciones(){
+        return $this->hasMany(Invitacion::class);
+    }
+    public function getJuegos(){
+        return $this->belongsToMany(Juego::class);
+    }
+
 }
