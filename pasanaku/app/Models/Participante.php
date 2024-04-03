@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Providers\RespuestaJson;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -36,26 +37,15 @@ class Participante extends Model
         return $this->hasMany(Invitacion::class);
     }
 
-    function hasRole($name)
+
+    private function validarRol()
     {
-        if ($this->rol_id) {
-            $rol = Rol::find($this->rol_id);
-            return $rol->name == $name;
+        if (!$this->hasRole('lider')) {
+            return RespuestaJson::respuesta('no estas autorizado para realizar esta accion');
         }
-        return false;
     }
 
-    function setRol($name)
-    {
-        $rol = Rol::findByName($name);
-        if ($rol) {
-            $this->rol_id = $rol->id;
-            $this->save();
-            return response()->json(['mensaje'=>'rol asignado']);
-        }
-        return response()->json(['mensaje'=>'rol no asignado']);
-
-    }
+    
     function setCuenta($cuenta_id){
         if(!$this->cuenta_id){
            $cuenta = Cuenta::find($cuenta_id);

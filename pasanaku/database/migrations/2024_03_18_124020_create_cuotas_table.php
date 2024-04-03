@@ -16,9 +16,11 @@ return new class extends Migration
         Schema::create('cuotas', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('ganador_id')->nullable();
+            $table->unsignedBigInteger('juego_id');
             $table->unsignedMediumInteger('monto_maximo');
-            $table->unsignedMediumInteger('oferta_maxima')->nullable();
-            $table->dateTime('fecha');
+            $table->unsignedMediumInteger('oferta_mayor')->nullable();
+            $table->timestamps();
+            $table->foreign('juego_id')->references('id')->on('juegos')->onDelete('cascade');
             $table->foreign('ganador_id')->references('id')->on('participantes');
         });
     }

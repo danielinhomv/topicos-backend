@@ -4,9 +4,9 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\Rol;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -27,9 +27,6 @@ class DatabaseSeeder extends Seeder
             'name'=>'danielinho',
             'email'=>'danielinho@gmail.com',
             'password'=>bcrypt('12345678')
-        ]);
-        Rol::create([
-            'name'=>'lider'
         ]);
     }
 }

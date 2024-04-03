@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('invitacions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('participante_id');
             $table->unsignedBigInteger('juego_id');
             $table->timestamps();

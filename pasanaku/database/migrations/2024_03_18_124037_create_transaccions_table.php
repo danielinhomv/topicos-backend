@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('transaccions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('realiza_participante_id');
-            $table->unsignedBigInteger('recibe_participante_id');
+            $table->unsignedBigInteger('recibe_participante_id')->nullable();
             $table->string('pdf_uri');
-            $table->string('image_uri');            
+            $table->string('image_uri'); 
             $table->timestamps();
             $table->foreign('realiza_participante_id')->references('id')->on('participantes');
             $table->foreign('recibe_participante_id')->references('id')->on('participantes');

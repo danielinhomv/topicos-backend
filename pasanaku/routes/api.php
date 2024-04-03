@@ -5,6 +5,7 @@ use App\Http\Controllers\ParticipanteController;
 use App\Http\Controllers\Users\AuthController;
 use App\Http\Controllers\Users\CuentaController;
 use App\Http\Controllers\Users\LoginController;
+use App\Http\Controllers\Users\RegisterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -31,15 +32,4 @@ Route::middleware('auth:sanctum')->get('/user/revoke', function (Request $reques
     return "tokens eliminado";
 });
 
-Route::get('cuentas/{user_id}', [CuentaController::class, 'getCuentas']);
-Route::post('cuentas', [CuentaController::class, 'store']);
-Route::put('cuentas/{id}', [CuentaController::class, 'update']);
-Route::delete('cuentas/{id}', [CuentaController::class, 'delete']);
-
-Route::post('juegos/{user_id}', [JuegoController::class, 'store']);
-Route::delete('juegos/{participante_id}', [JuegoController::class, 'delete']);
-Route::put('juegos/{valor}/{participante_id}', [JuegoController::class, 'setNroParticipantes']);
-
-Route::get('participantes/{id}/roles/{rol_name}', [ParticipanteController::class, 'hasRole']);
-Route::get('participantes/{id}/cuentas/{cuenta_id}', [ParticipanteController::class, 'setCuenta']);
 

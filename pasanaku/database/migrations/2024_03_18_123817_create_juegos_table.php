@@ -20,6 +20,7 @@ return new class extends Migration
             $table->unsignedMediumInteger('monto');
             $table->string('moneda');
             $table->string('estado')->default('abierto');
+            $table->string('nombre');
             $table->timestamps();
         });
     }
