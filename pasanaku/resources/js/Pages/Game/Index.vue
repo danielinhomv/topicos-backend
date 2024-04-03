@@ -121,10 +121,6 @@ const submitFormCreate = () => {
                             </PrimaryButton>
                         </template>
                     </DialogModal>
-
-                    <div>
-                        <img src="/qr_codes/qrcode.png" alt="Código QR">    
-                    </div>
                 </div>
             </div>
         </div>
