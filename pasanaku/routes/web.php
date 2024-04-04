@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Game\InvitacionController;
 use App\Http\Controllers\Game\JuegoController;
 use App\Mail\CorreoMailable;
 use Illuminate\Foundation\Application;
@@ -26,14 +27,6 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
-Route::get('contactanos',function(){
-    
-    $juego=new JuegoController();
-    $filePath=$juego->qrcode();
-    $response=Mail::to('montanovargasdaniel39@gmail.com')->send(new CorreoMailable($filePath));
-    dump($response);
-    
-})->name('contactanos');
 
 Route::middleware([
     'auth:sanctum',
@@ -46,5 +39,9 @@ Route::middleware([
 
     Route::get('juegos/index',[JuegoController::class,'index'])->name('juegos.index');
     Route::post('juegos/create',[JuegoController::class,'create'])->name('juegos.create');
-    
+    Route::get('juegos/home/{juego_id}',[JuegoController::class,'home'])->name('juegos.home');
+    Route::get('invitaciones/index/{juego_id}',[InvitacionController::class,'index'])->name('invitaciones.index');
+    Route::get('invitaciones/realizar/{juego_id}/{correos}',[InvitacionController::class,'realizarInvitaciones'])->name('invitaciones.realizarInvitaciones');
+
+
 });

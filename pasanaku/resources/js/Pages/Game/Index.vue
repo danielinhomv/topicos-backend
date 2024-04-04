@@ -28,6 +28,9 @@ const eliminar = id => {
         Inertia.delete(route('permisos.destroy', id))
     }
 }
+const entrar = (id) => {
+    Inertia.get(route('juegos.home', { id: id }));
+}
 
 const abrirModalCreate = () => {
     abiertoCreate.value = true;
@@ -70,7 +73,8 @@ const submitFormCreate = () => {
                             <p class="text-gray-600 mb-4">Jugadores : {{ juego.nro_participantes_actual }}</p>
                             <div class="flex justify-between items-center">
                                 <PrimaryButton
-                                    class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded">
+                                    class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded"
+                                    @click="entrar(juego.id)">
                                     Entrar
                                 </PrimaryButton>
                                 <div class="w-4"></div> <!-- Espacio entre los botones -->
@@ -96,7 +100,7 @@ const submitFormCreate = () => {
                                     class="mt1 block w-ful" />
                             </div>
                             <div>
-                                <InputLabel for="nro_participantes" value="nro_participantes" />
+                                <InputLabel for="limite de participantes" value="limite de participantes" />
                                 <TextInput id="nro_participantes" v-model="form.nro_participantes" type="number" min="2"
                                     class="mt1 block w-ful" />
                             </div>

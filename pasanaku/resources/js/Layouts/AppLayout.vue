@@ -51,8 +51,11 @@ const logout = () => {
                                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </NavLink>
-                                <NavLink :href="route('juegos.index')" :active="route().current('juegos.index')">
+                                <NavLink :href="route('juegos.index')" :active="route().current('juegos.index') || route().current('juegos.home') || route().current('invitaciones.index')">
                                     Tus juegos
+                                </NavLink>
+                                <NavLink >
+                                    Tus cuentas
                                 </NavLink>
                             </div>
                         </div>
@@ -199,6 +202,10 @@ const logout = () => {
                         </ResponsiveNavLink>
                         <ResponsiveNavLink :href="route('juegos.index')" :active="route().current('juegos.index')">
                             tus juegos
+                        </ResponsiveNavLink>
+
+                        <ResponsiveNavLink >
+                            tus Cuentas
                         </ResponsiveNavLink>
                     </div>
 

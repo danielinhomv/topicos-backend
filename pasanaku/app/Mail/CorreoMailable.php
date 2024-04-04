@@ -17,10 +17,10 @@ class CorreoMailable extends Mailable
      *
      * @return void
      */
-   public $name;  
-    public function __construct($name)
+   public $qr;  
+    public function __construct($qr)
     {
-        $this->name=$name;
+        $this->qr=$qr;
     }
 
     /**
@@ -31,7 +31,7 @@ class CorreoMailable extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Correo Mailable',
+            subject: 'invitacion',
         );
     }
 
@@ -43,7 +43,7 @@ class CorreoMailable extends Mailable
     public function content()
     {
         return new Content(
-            view: 'emails.contactanos',
+            view: 'emails.invitacion',
         );
     }
 

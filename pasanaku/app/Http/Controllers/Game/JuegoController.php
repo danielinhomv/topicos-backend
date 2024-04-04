@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Game;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cuenta;
 use App\Models\Juego;
 use App\Models\Participante;
 use App\Models\User;
@@ -26,6 +27,7 @@ class JuegoController extends Controller
                 ->limit(1)
         ])->get();
 
+
         return Inertia::render('Game/Index', ['juegos' => $juegos]);
     }
 
@@ -33,9 +35,29 @@ class JuegoController extends Controller
     {
         Juego::crear($request);
     }
-    public function qrcode()
+    static function qrcode($nombreJuego, $nro_participantes, $monto, $moneda)
     {
-        $qrCode = QrCode::size(150)->generate('https://github.com/danielinhomv');
+        $info = "Nombre del Juego: $nombreJuego\n";
+        $info .= "limite de Participantes: $nro_participantes\n";
+        $info .= "Monto: $monto $moneda\n";
+        $url = 'http://127.0.0.1:8000/';
+        $content = $info . "\n" . $url;
+        $qrCode = QrCode::size(150)->generate($content);
         return $qrCode;
+    }
+
+
+    public function home($id)
+    {
+        $juego=Juego::find($id);
+        $cuentas = Cuenta::where('id', Auth::id())->get();
+        $participantes = User::join('participantes', 'users.id', '=', 'participantes.user_id')
+            ->where('participantes.juego_id', $id)
+            ->get();
+        return Inertia::render('Game/Home', [
+            'juego' => $juego,
+            'cuentas' => $cuentas,
+            'participantes'=> $participantes
+        ]);
     }
 }
