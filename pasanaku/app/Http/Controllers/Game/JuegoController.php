@@ -49,7 +49,7 @@ class JuegoController extends Controller
 
     public function home($id)
     {
-        $juego=Juego::find($id);
+        $juego = Juego::find($id);
         $cuentas = Cuenta::where('id', Auth::id())->get();
         $participantes = User::join('participantes', 'users.id', '=', 'participantes.user_id')
             ->where('participantes.juego_id', $id)
@@ -57,7 +57,7 @@ class JuegoController extends Controller
         return Inertia::render('Game/Home', [
             'juego' => $juego,
             'cuentas' => $cuentas,
-            'participantes'=> $participantes
+            'participantes' => $participantes
         ]);
     }
 }

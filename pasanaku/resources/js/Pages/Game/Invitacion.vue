@@ -22,7 +22,7 @@ const telefono = ref('');
 const abiertoCreate = ref(false);
 
 const add = () => {
-    if (email != '' && telefono != '') {
+    if (email.value != '' && telefono.value != '') {
         correos.push(email.value);
         telefonos.push(telefono.value);
     }
@@ -40,8 +40,8 @@ const clear = () => {
     email.value= '';
     telefono.value= '';
 }
-const send = (id,correos)=>{
-    Inertia.get(route('invitaciones.realizarInvitaciones',{juego_id : id,correos:correos}))
+const send = (id,correos,telefonos)=>{
+    Inertia.get(route('invitaciones.realizarInvitaciones',{juego_id : id,correos:correos,telefonos:telefonos}))
 }
 
 </script>
@@ -85,7 +85,7 @@ const send = (id,correos)=>{
                             </svg>
                             <span class="text-sm hidden md:block">New</span>
                         </a>
-                        <a @click="send(juego.id,correos)"
+                        <a @click="send(juego.id,correos,telefonos)"
                             class="p-2 border border-slate-200 rounded-md inline-flex space-x-1 items-center text-indigo-200 hover:text-white bg-indigo-600 hover:bg-indigo-500">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor" class="w-4 h-4">

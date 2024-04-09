@@ -41,7 +41,7 @@ Route::middleware([
     Route::post('juegos/create',[JuegoController::class,'create'])->name('juegos.create');
     Route::get('juegos/home/{juego_id}',[JuegoController::class,'home'])->name('juegos.home');
     Route::get('invitaciones/index/{juego_id}',[InvitacionController::class,'index'])->name('invitaciones.index');
-    Route::get('invitaciones/realizar/{juego_id}/{correos}',[InvitacionController::class,'realizarInvitaciones'])->name('invitaciones.realizarInvitaciones');
+    Route::get('invitaciones/realizar/{juego_id}/{correos}/{telefonos}',[InvitacionController::class,'realizarInvitaciones'])->name('invitaciones.realizarInvitaciones');
 
 
 });
